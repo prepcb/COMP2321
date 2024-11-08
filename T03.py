@@ -141,30 +141,7 @@ while e > 0.001 and N<200:
 
 print(x,N)
 
-print("=========Gausss Seidel iteration - sparse?")
 
-A = np.array([[-3,1,0,0],[1,1,1,11],[0,1,-2,0]])
-#A = np.array([[1,1,1,11],[0,1,-2,0],[-3,1,0,0]])
-
-x = np.array([0.,0.,0.])
-y = np.array([0.,0.,0.])
-
-e =1.
-N = 0
-while e > 0.001 and N<200:
-    e = 0.
-    d = np.array([0.,0.,0.])
-    for k in range(m):
-        i,j = p[k]  
-        d[i]-=A[i,j]*x[j]/A[i,i]
-    for i in range(3):
-        y[i] = d[i]+x[i]+A[i,3]/A[i,i]
-        e += (x[i]-y[i])**2
-        x[i] = y[i]
-    N +=1
-
-print(A)
-print(x,'number of iterations: ',N)
 
 
 
