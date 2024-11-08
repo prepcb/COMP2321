@@ -34,3 +34,25 @@ for i in range(3):
     x[j] = x[j]/A[j,j]
   
 print(x)
+
+print("=========")
+
+#A = np.array([[3,-1,0,0],[1,1,1,11],[0,-1,2,0]])
+
+x = np.array([0.,0.,0.])
+y = np.array([0.,0.,0.])
+e =1.
+n = 0
+while e > 0.01 and n<200:
+    for i in range(3):
+        y[i] = x[i]+A[i,3]/A[i,i]
+        for j in range(3):
+            y[i]-=A[i,j]*x[j]/A[i,i]
+    e = 0.
+    for i in range(3):
+        e += (x[i]-y[i])**2
+    for i in range(3):
+        x[i] = y[i]
+    print(n,e)
+    n +=1
+print(x)
