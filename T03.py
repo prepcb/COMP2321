@@ -37,22 +37,52 @@ print(x)
 
 print("=========")
 
-#A = np.array([[3,-1,0,0],[1,1,1,11],[0,-1,2,0]])
+A = np.array([[-3,1,0,0],[1,1,1,11],[0,1,-2,0]])
+#A = np.array([[1,1,1,11],[0,1,-2,0],[-3,1,0,0]])
 
 x = np.array([0.,0.,0.])
 y = np.array([0.,0.,0.])
 e =1.
-n = 0
-while e > 0.01 and n<200:
+N = 0
+while e > 0.001 and N<200:
+    e = 0.
     for i in range(3):
         y[i] = x[i]+A[i,3]/A[i,i]
         for j in range(3):
             y[i]-=A[i,j]*x[j]/A[i,i]
-    e = 0.
-    for i in range(3):
         e += (x[i]-y[i])**2
-    for i in range(3):
+    for i in range(3): #Gauss Siedel
         x[i] = y[i]
-    print(n,e)
-    n +=1
-print(x)
+    print(N,e)
+    N +=1
+
+print(A)
+print(x,N)
+
+m = 0
+p = []
+for i in range(3):
+    for j in range(3):
+        if abs(A[i,j])>1e-6:
+            p.append([i,j])
+            m+=1
+print(p,m)
+
+
+b = np.array([1,2,3])
+c = np.array([0,0,0])
+for i in range(3):
+    for j in range(3):
+        c += A[i,j]*b[i]
+print(c)
+
+c = np.array([0,0,0])
+for k in range(m):
+    i,j = p[k]
+    c += A[i,j]*b[i]
+print(c)
+
+
+
+
+
