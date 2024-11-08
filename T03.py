@@ -69,17 +69,17 @@ for i in range(3):
 print(p,m)
 
 
-b = np.array([1,2,3])
+b = np.array([7,2,6])
 c = np.array([0,0,0])
 for i in range(3):
     for j in range(3):
-        c += A[i,j]*b[i]
+        c[i] += A[i,j]*b[j]
 print(c)
 
 c = np.array([0,0,0])
 for k in range(m):
     i,j = p[k]
-    c += A[i,j]*b[i]
+    c[i] += A[i,j]*b[j]
 print(c)
 
 
